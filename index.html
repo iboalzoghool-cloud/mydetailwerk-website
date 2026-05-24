@@ -2262,6 +2262,41 @@ section[data-screen-label="01 Hero"] {
   #materials .rounded-3xl {
     border-radius: 14px !important;
   }
+
+  /* ════════ COMPACT MOBILE — app-like, less stretched ════════ */
+
+  /* C1. Tighter vertical rhythm so the page isn't endlessly long */
+  section:not([data-screen-label="01 Hero"]) {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+  /* C2. Section header sits closer to its content */
+  .mb-16, .md\:mb-20 { margin-bottom: 1.75rem !important; }
+  section .display { font-size: clamp(30px, 8.5vw, 40px) !important; line-height: 1.08 !important; }
+  section .display + p, .max-w-2xl.text-base { font-size: 14.5px !important; }
+
+  /* C3. Material cards – shorter so the grid stays compact */
+  #materials article { height: 208px !important; }
+  #materials article .font-serif,
+  #materials article [style*="Cinzel"] { font-size: 20px !important; }
+
+  /* C4. "Warum" list – compact rows, no wasted space */
+  #why .grid > * .py-5 { padding-top: 0.55rem !important; padding-bottom: 0.55rem !important; }
+  #why .grid > * { font-size: 14px !important; }
+  #why .py-5 p, #why .py-5 div { line-height: 1.4 !important; }
+
+  /* C5. Mobile-service benefits – 2 per row, tighter */
+  #mobil .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .wkzi-card { padding: 16px 14px !important; }
+  .wkzi-card h3 { font-size: 15px !important; }
+  .wkzi-card p { font-size: 12.5px !important; }
+  .wkzi-ico { width: 32px !important; height: 32px !important; margin-bottom: 10px !important; }
+
+  /* C6. FAQ / process – tighter spacing */
+  #faq .py-6, #process .gap-8 { gap: 1.5rem !important; }
+
+  /* C7. Let the cinematic video shimmer through panels on mobile too */
+  .fixed video { filter: contrast(1.08) saturate(0.6) brightness(0.30) !important; }
 }
 
 /* Extra small phones */
@@ -3596,10 +3631,18 @@ function GlobalVideoBackdrop() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !blobUrl) return;
-    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.loop = false;
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.loop = isMobile;
     const onMeta = () => {
-      v.pause();
-      v.currentTime = 0;
+      if (isMobile) {
+        // Mobile browsers don't reliably paint scrubbed (seeked) frames on a
+        // paused video, so the car would stay invisible. Play it as a gentle
+        // muted loop instead — the cinematic backdrop is visible either way.
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+        v.currentTime = 0;
+      }
       setReady(true);
     };
     v.addEventListener('loadedmetadata', onMeta, { once: true });
@@ -3611,6 +3654,10 @@ function GlobalVideoBackdrop() {
     if (!ready) return;
     const v = videoRef.current;
     if (!v) return;
+
+    // On mobile the video plays as a loop (see attach effect) — skip the
+    // scroll-scrub machinery entirely so we don't fight playback.
+    if (window.matchMedia('(max-width: 767px)').matches) return;
 
     // Scroll handler — only writes to refs, touches no React state
     const onScroll = () => {
