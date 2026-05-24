@@ -2342,6 +2342,104 @@ section.z-10:not([data-screen-label="01 Hero"]) {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   PREMIUM DEPTH v1 — per-section colour ambience
+   Each section carries its own subtle colour mood so scrolling
+   feels like distinct scenes instead of one flat slab. Glows are
+   large + low-opacity so text contrast stays intact. (edel)
+   ═══════════════════════════════════════════════════════════ */
+#top #materials {
+  background:
+    radial-gradient(95% 72% at 12% 0%, rgba(201,169,106,0.13), transparent 55%),
+    radial-gradient(80% 60% at 92% 100%, rgba(96,140,210,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(8,8,12,0.93) 0%, rgba(5,5,9,0.96) 45%, rgba(8,8,12,0.94) 100%) !important;
+}
+#top #summer {
+  background:
+    radial-gradient(92% 70% at 85% 6%, rgba(232,170,82,0.16), transparent 56%),
+    radial-gradient(80% 60% at 8% 100%, rgba(196,96,42,0.11), transparent 60%),
+    linear-gradient(180deg, rgba(12,9,7,0.93) 0%, rgba(7,5,4,0.96) 45%, rgba(11,8,6,0.94) 100%) !important;
+}
+#top #packages {
+  background:
+    radial-gradient(96% 72% at 50% -6%, rgba(58,110,232,0.16), transparent 55%),
+    radial-gradient(70% 55% at 100% 100%, rgba(201,169,106,0.08), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,15,0.93) 0%, rgba(4,5,11,0.96) 45%, rgba(7,9,15,0.94) 100%) !important;
+}
+#top #configurator {
+  background:
+    radial-gradient(90% 66% at 7% 4%, rgba(74,150,210,0.13), transparent 55%),
+    radial-gradient(80% 60% at 96% 96%, rgba(120,104,224,0.11), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,14,0.93) 0%, rgba(4,5,10,0.96) 45%, rgba(7,9,14,0.94) 100%) !important;
+}
+#top #region {
+  background:
+    radial-gradient(100% 72% at 50% 0%, rgba(48,92,206,0.15), transparent 58%),
+    linear-gradient(180deg, rgba(6,8,15,0.93) 0%, rgba(4,5,11,0.96) 45%, rgba(6,8,15,0.94) 100%) !important;
+}
+#top #faq {
+  background:
+    radial-gradient(85% 60% at 90% 4%, rgba(110,124,205,0.12), transparent 56%),
+    radial-gradient(70% 55% at 4% 100%, rgba(96,140,210,0.08), transparent 60%),
+    linear-gradient(180deg, rgba(7,8,13,0.93) 0%, rgba(4,5,9,0.96) 45%, rgba(7,8,13,0.94) 100%) !important;
+}
+/* Trust band (no id) — quiet champagne warmth */
+#top section.z-10:not([data-screen-label="01 Hero"]) {
+  background:
+    radial-gradient(80% 65% at 88% 0%, rgba(201,169,106,0.09), transparent 58%),
+    linear-gradient(180deg, rgba(8,8,12,0.94), rgba(5,6,10,0.96)) !important;
+}
+/* CTA keeps skyline drama — enrich with a deeper electric-blue bloom */
+#top #cta {
+  background:
+    radial-gradient(70% 60% at 50% 12%, rgba(58,110,232,0.18), transparent 60%),
+    linear-gradient(180deg, rgba(6,7,12,0.62) 0%, rgba(5,6,11,0.80) 55%, rgba(6,7,14,0.90) 100%) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FLOATING CARDS — surfaces lift off the background with soft
+   shadow + a hairline edge, and rise gently on hover. (Apple-like)
+   ═══════════════════════════════════════════════════════════ */
+#materials article {
+  box-shadow:
+    0 26px 60px -30px rgba(0,0,0,0.9),
+    0 10px 26px -18px rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+  transition: box-shadow 0.6s ease;
+}
+#materials article:hover {
+  box-shadow:
+    0 36px 80px -28px rgba(0,0,0,0.92),
+    0 14px 32px -16px rgba(40,70,140,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.09);
+}
+.pkg-card {
+  transition: transform 0.55s cubic-bezier(.22,1,.36,1), box-shadow 0.55s ease !important;
+  will-change: transform;
+}
+.pkg-card:hover {
+  transform: translateY(-8px);
+}
+.pkg-card.featured:hover {
+  box-shadow:
+    0 52px 90px -28px rgba(40,75,150,0.42),
+    0 30px 60px -30px rgba(0,0,0,0.82),
+    inset 0 1px 0 rgba(255,255,255,0.09) !important;
+}
+.pkg-card:not(.featured):hover {
+  box-shadow:
+    0 40px 72px -28px rgba(0,0,0,0.78),
+    0 0 0 1px rgba(120,150,210,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+.hud-card {
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.5s ease;
+}
+.hud-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(73,139,217,0.30);
+}
+
+/* ═══════════════════════════════════════════════════════════
    NATIVE BUTTON NORMALIZE — the tw-shim never reset <button>,
    so unstyled text-buttons (FAQ questions, legal accordions)
    showed the OS default light-grey fill, hiding their text.
@@ -3858,7 +3956,7 @@ window.Hero = Hero;
 function Trust() {
   const items = [
   { kicker: '01', title: 'Innenraum statt Durchlaufwäsche', text: 'Wir spezialisieren uns auf das, was wirklich zählt: deinen Innenraum.' },
-  { kicker: '02', title: 'Materialgerecht statt Einheitsreiniger', text: 'Leder, Glas, Klavierlack, Stoff – jede Oberfläche bekommt ihre eigene Behandlung.' },
+  { kicker: '02', title: 'Materialgerecht statt Einheitsreiniger', text: 'Leder, Glas, Klavierlack, Stoff. Jede Oberfläche bekommt ihre eigene Behandlung.' },
   { kicker: '03', title: 'Startpreise ab 49 €', text: 'Transparente Einstiegspreise. Endpreis nach kurzer Einschätzung.' },
   { kicker: '04', title: 'Buchung per WhatsApp', text: 'Modell, Standort, Bilder schicken. Termin steht. Ohne Formular-Chaos.' }];
 
@@ -4064,7 +4162,7 @@ function MatSignatureCard({ index }) {
         fontSize: 12.5, fontWeight: 300,
         color: 'rgba(208,212,225,0.55)', lineHeight: 1.6, marginTop: 10,
       }}>
-        Nicht ein Produkt für alles — sondern das richtige Produkt für jede Oberfläche. Das ist der Unterschied zwischen sauber und gepflegt.
+        Kein Reiniger für alles, sondern das richtige Mittel für jede Oberfläche. Genau das ist der Unterschied zwischen sauber und gepflegt.
       </p>
 
       <div style={{
@@ -4093,35 +4191,35 @@ function Materials() {
       key: 'leather', label: 'Leder',
       photo: window.__resources.matLeather,
       note: 'Nicht zu nass · Konditionierung empfohlen',
-      text: 'Leder braucht präzise Pflege – weder zu aggressiv noch zu trocken. Schonend gereinigt, natürliche Textur erhalten.',
+      text: 'Leder braucht die richtige Hand, weder zu aggressiv noch zu trocken. Schonend gereinigt, damit die natürliche Textur erhalten bleibt.',
       rgb: '190, 150, 108',
     },
     {
       key: 'glass', label: 'Glas',
       photo: window.__resources.matGlass,
       note: 'Mikrofaser · Kein Druck · Streifenfrei',
-      text: 'Glas muss klar wirken. Scheiben innen streifenfrei – für Sicht, Licht und das richtige Raumgefühl.',
+      text: 'Glas muss klar sein. Scheiben innen streifenfrei gereinigt, für gute Sicht und ein helles Raumgefühl.',
       rgb: '100, 162, 215',
     },
     {
       key: 'piano', label: 'Klavierlack',
       photo: window.__resources.matPiano,
       note: 'Non-Scratch · Keine Mikrokratzer',
-      text: 'Klavierlack zeigt jeden Fehler. Wir arbeiten kontrolliert und schonend — kein Kratzer zu viel.',
+      text: 'Klavierlack verzeiht keinen Fehler. Wir arbeiten kontrolliert und schonend, ganz ohne neue Kratzer.',
       rgb: '202, 212, 228',
     },
     {
       key: 'fabric', label: 'Polster & Stoff',
       photo: window.__resources.matFabric,
       note: 'Sprühextraktion · Tiefenreinigung',
-      text: 'Fasern speichern Gerüche, Staub und Spuren. Wir lösen beides gezielt und materialschonend.',
+      text: 'Fasern speichern Gerüche, Staub und Spuren. Wir lösen das gezielt und materialschonend.',
       rgb: '155, 148, 140',
     },
     {
       key: 'plastic', label: 'Kunststoff & Cockpit',
       photo: window.__resources.matPlastic,
       note: 'Ölarm · Matte Flächen schonend behandelt',
-      text: 'Tasten, Fugen, Ablagen, Cockpit – genau dort sieht man, ob wirklich sorgfältig gearbeitet wurde.',
+      text: 'Tasten, Fugen, Ablagen, Cockpit. Genau dort sieht man, ob wirklich sorgfältig gearbeitet wurde.',
       rgb: '162, 174, 196',
     },
   ];
@@ -4131,7 +4229,7 @@ function Materials() {
       id="materials"
       eyebrow="03 · Materialien"
       title={<>Jede Oberfläche. <span className="text-finish" data-text="Richtig behandelt.">Richtig behandelt.</span></>}
-      sub="Leder, Glas, Klavierlack, Stoff, Kunststoff – jedes Material reagiert anders. Deshalb behandeln wir jedes Material anders."
+      sub="Leder, Glas, Klavierlack, Stoff, Kunststoff. Jedes Material reagiert anders, also behandeln wir auch jedes anders."
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -4293,7 +4391,7 @@ function BeforeAfter() {
       id="gallery"
       eyebrow="04 · Vorher · Nachher"
       title={<>Der Unterschied liegt nicht im Versprechen. Sondern im <span className="text-finish" data-text="Detail">Detail</span>.</>}
-      sub="Bewege den Regler. Links der Ausgangszustand. Rechts das Ergebnis – nach echter Arbeit.">
+      sub="Bewege den Regler. Links der Ausgangszustand, rechts das Ergebnis nach echter Arbeit.">
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -4550,7 +4648,7 @@ function Packages() {
     {
       tier: 'I',
       name: 'Main Fresh',
-      tagline: 'Schneller Refresh. Innenraum rein – fertig.',
+      tagline: 'Schneller Refresh. Innenraum sauber, fertig.',
       price: 49,
       items: [
         'Innenraum gründlich aussaugen',
@@ -4563,7 +4661,7 @@ function Packages() {
     {
       tier: 'II',
       name: 'Main Deep',
-      tagline: 'Das Paket, das die meisten wählen – weil ein frischer Wagen nicht reicht, wenn man wirklich sauber fahren will.',
+      tagline: 'Das Paket, das die meisten wählen. Weil ein kurzer Refresh nicht reicht, wenn man wirklich sauber fahren will.',
       price: 79,
       items: [
         'Alles aus Main Fresh',
@@ -4597,7 +4695,7 @@ function Packages() {
       id="packages"
       eyebrow="06 · Pakete"
       title={<>Drei Pakete. Ein <span className="text-finish" data-text="Anspruch">Anspruch</span>.</>}
-      sub="Vom schnellen Refresh bis zum vollen Finish. Startpreise – Endpreis nach kurzer Einschätzung."
+      sub="Vom schnellen Refresh bis zum vollen Finish. Die genannten Preise sind Startpreise, den Endpreis nennen wir nach einer kurzen Einschätzung."
     >
       <div className="max-w-7xl mx-auto grid grid-cols-3 gap-2 md:gap-4 lg:gap-4 items-stretch" id="pkg-grid">
         {pkgs.map((p, i) => (
@@ -4636,7 +4734,7 @@ function Configurator() {
   const priceMax = price + 20;
   const saving   = pkg === 'Main Deep' ? 15 : pkg === 'Main Prestige' ? 25 : 0;
 
-  const msg = `Hallo MAIN DetailWerk, ich möchte ${pkg} für ${size} anfragen – Verschmutzung: ${dirt}. Startpreis ca. ${price} €. Bitte Termin vorschlagen.`;
+  const msg = `Hallo MAIN DetailWerk, ich möchte ${pkg} für ${size} anfragen. Verschmutzung: ${dirt}. Startpreis ca. ${price} €. Bitte Termin vorschlagen.`;
 
   const labelStyle = {
     fontFamily: "'JetBrains Mono', monospace",
@@ -4683,7 +4781,7 @@ function Configurator() {
       id="configurator"
       eyebrow="07 · Startpreis berechnen"
       title={<>Dein Startpreis. <span className="text-finish" data-text="Sofort.">Sofort.</span></>}
-      sub="Wähle Paket, Fahrzeugklasse und Zustand – du siehst deinen Preis live. Keine Überraschungen, kein Kleingedrucktes."
+      sub="Wähle Paket, Fahrzeugklasse und Zustand, dann siehst du deinen Preis sofort. Keine Überraschungen, kein Kleingedrucktes."
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-5 gap-4">
@@ -4815,8 +4913,8 @@ window.Configurator = Configurator;
 function Process() {
   const steps = [
     { n: '01', t: 'WhatsApp schreiben', d: 'Du sendest uns kurz Fahrzeugmodell, Standort und wenn möglich ein paar Bilder.' },
-    { n: '02', t: 'Einschätzung erhalten', d: 'Wir prüfen Größe, Material, Verschmutzung und Aufwand.' },
-    { n: '03', t: 'Reinigung durchführen', d: 'Wir reinigen deinen Innenraum materialgerecht, detailliert und sauber.' },
+    { n: '02', t: 'Einschätzung erhalten', d: 'Wir prüfen Größe, Material, Verschmutzung und Aufwand und schlagen dir einen Termin vor.' },
+    { n: '03', t: 'Reinigung vor Ort', d: 'Wir kommen zu dir und reinigen deinen Innenraum direkt vor Ort, materialgerecht und gründlich.' },
     { n: '04', t: 'Finish erleben', d: 'Du steigst wieder in einen Innenraum, der frisch, klar und hochwertig wirkt.' },
   ];
   return (
@@ -4824,7 +4922,7 @@ function Process() {
       id="process"
       eyebrow="08 · Ablauf"
       title={<>So läuft deine <span className="text-finish" data-text="Reinigung">Reinigung</span> ab.</>}
-      sub="Vier Schritte. Kein Formular-Marathon. Kein Vertragsdickicht. Nur eine kurze Nachricht – und der Rest passiert ruhig im Hintergrund."
+      sub="Vier Schritte, kein Formular-Marathon und kein Vertragsdickicht. Eine kurze Nachricht genügt, den Rest übernehmen wir."
     >
       <div className="max-w-7xl mx-auto relative">
         {/* horizontal line on desktop */}
@@ -4857,7 +4955,7 @@ window.Process = Process;
 
 function Why() {
   const points = [
-    'Weil du jeden Tag reinfährst – da sollte es sich gut anfühlen.',
+    'Weil du jeden Tag einsteigst und es sich gut anfühlen sollte.',
     'Weil Sauberkeit nicht nur optisch ist, sondern riechbar und spürbar.',
     'Weil Staub, Gerüche und Fettfilme den Wert deines Autos still und leise senken.',
     'Weil Leder, Glas und Klavierlack jede Pflege anders verdienen.',
@@ -4960,6 +5058,7 @@ function FAQ() {
   const items = [
     { q: 'Warum sind es Startpreise?', a: 'Weil Fahrzeuggröße, Verschmutzungsgrad, Tierhaare, Flecken, Materialzustand und gewünschter Leistungsumfang den Aufwand verändern. Du bekommst vor dem Termin eine faire Einschätzung.' },
     { q: 'Wie vereinbare ich einen Termin?', a: 'Am einfachsten per WhatsApp. Sende uns Fahrzeugmodell, Standort, gewünschtes Paket und wenn möglich ein paar Bilder vom Innenraum.' },
+    { q: 'Kommt ihr zu mir oder muss ich vorbeikommen?', a: 'Wir kommen zu dir. Wir reinigen dein Auto direkt vor Ort, zu Hause oder am Arbeitsplatz, je nach Standort und Platzverhältnissen. Außenpflege ist nach Absprache und je nach Wasserzugang möglich.' },
     { q: 'Wie lange dauert eine Reinigung?', a: 'Je nach Paket und Zustand meist zwischen ca. 1,5 und 4 Stunden. Bei starker Verschmutzung oder Zusatzleistungen kann es länger dauern.' },
     { q: 'Reinigt ihr auch außen?', a: 'Je nach Paket und Standort ist Außenreinigung light oder intensivere Außenpflege nach Absprache möglich. Entscheidend sind rechtliche Möglichkeit, Standortbedingungen und Wasserzugang.' },
     { q: 'Was ist mit Tierhaaren oder starken Flecken?', a: 'Tierhaare, starke Flecken oder intensive Gerüche können zusätzlichen Aufwand bedeuten. Wir prüfen das vorher transparent anhand von Bildern oder vor Ort.' },
@@ -5043,7 +5142,7 @@ function CTA() {
         </Reveal>
         <Reveal delay={160}>
           <p className="mt-8 text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Schick uns dein Fahrzeug, deinen Standort und ein paar Bilder – wir sagen dir, welches Paket zu deinem Auto passt.
+            Schick uns dein Fahrzeugmodell, deinen Standort und ein paar Bilder. Wir sagen dir, welches Paket zu deinem Auto passt, und kommen für die Reinigung zu dir vor Ort.
           </p>
         </Reveal>
 
