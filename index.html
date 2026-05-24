@@ -2258,13 +2258,13 @@ section[data-screen-label="01 Hero"] {
     display: inline-flex !important;
   }
 
-  /* 20. Materials grid – 2 per row on mobile */
+  /* 20. Materials grid – 3 per row × 2 rows on mobile (compact) */
   #materials .grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 7px !important;
   }
   #materials .rounded-3xl {
-    border-radius: 14px !important;
+    border-radius: 12px !important;
   }
 
   /* ════════ COMPACT MOBILE — app-like, less stretched ════════ */
@@ -2279,10 +2279,17 @@ section[data-screen-label="01 Hero"] {
   section .display { font-size: clamp(30px, 8.5vw, 40px) !important; line-height: 1.08 !important; }
   section .display + p, .max-w-2xl.text-base { font-size: 14.5px !important; }
 
-  /* C3. Material cards – shorter so the grid stays compact */
-  #materials article { height: 208px !important; }
-  #materials article .font-serif,
-  #materials article [style*="Cinzel"] { font-size: 20px !important; }
+  /* C3. Material cards – compact 3-up tiles, label only, no overlap */
+  #materials article { height: 150px !important; }
+  #materials article > div:last-of-type,
+  #materials article [style*="padding: 22px"] { padding: 12px 11px !important; }
+  #materials article [style*="Cinzel"] { font-size: 14px !important; letter-spacing: 0 !important; line-height: 1.1 !important; }
+  /* hide the tiny mono index + care-note row so nothing collides on small tiles */
+  #materials article [style*="0.3em"],
+  #materials article [style*="0.15em"] { display: none !important; }
+  /* the rich "Signature" tile doesn't fit a 1/3 tile — hide on mobile so the
+     5 material tiles sit cleanly as 3 + 2 (two rows) */
+  #materials .grid > *:last-child { display: none !important; }
 
   /* C4. "Warum" list – compact rows, no wasted space */
   #why .grid > * .py-5 { padding-top: 0.55rem !important; padding-bottom: 0.55rem !important; }
@@ -2301,6 +2308,12 @@ section[data-screen-label="01 Hero"] {
 
   /* C7. Let the cinematic video shimmer through panels on mobile too */
   .fixed video { filter: contrast(1.08) saturate(0.6) brightness(0.30) !important; }
+
+  /* C8. Price calculator – smaller heading + price so it fits on one screen */
+  #configurator .display { font-size: 26px !important; line-height: 1.06 !important; }
+  #configurator .metal-price.ticker { font-size: 50px !important; }
+  #configurator [style*="padding: 28px"] { padding: 16px 15px !important; }
+  #configurator .space-y-6 > * + * { margin-top: 14px !important; }
 }
 
 /* Extra small phones */
@@ -2440,13 +2453,13 @@ section.z-10:not([data-screen-label="01 Hero"]) {
 #top #why {
   background: radial-gradient(125% 115% at 50% 40%, rgba(6,7,11,0.26) 0%, rgba(5,6,10,0.52) 46%, rgba(3,4,8,0.88) 100%) !important;
 }
-/* Light frosted blur so centre text stays legible over the live video,
-   while the effect remains clearly visible (less blur than before). */
+/* NO blur — the background animation must stay crisp and visible.
+   Only a touch of saturation as a subtle colour boost ("Stich Farbe"). */
 #top #materials, #top #summer, #top #packages, #top #configurator,
 #top #region, #top #faq, #top #cta, #top #why,
 #top section.z-10:not([data-screen-label="01 Hero"]) {
-  backdrop-filter: blur(15px) saturate(128%) !important;
-  -webkit-backdrop-filter: blur(15px) saturate(128%) !important;
+  backdrop-filter: saturate(125%) !important;
+  -webkit-backdrop-filter: saturate(125%) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2500,9 +2513,9 @@ section.z-10:not([data-screen-label="01 Hero"]) {
   background:
     radial-gradient(90% 70% at 50% -8%, rgba(58,110,232,0.20), transparent 56%),
     radial-gradient(70% 60% at 8% 100%, rgba(201,169,106,0.10), transparent 60%),
-    linear-gradient(180deg, rgba(6,8,14,0.54) 0%, rgba(4,5,11,0.68) 45%, rgba(6,8,14,0.56) 100%) !important;
-  backdrop-filter: blur(26px) saturate(135%) !important;
-  -webkit-backdrop-filter: blur(26px) saturate(135%) !important;
+    radial-gradient(125% 115% at 50% 40%, rgba(5,6,12,0.24) 0%, rgba(4,5,11,0.50) 46%, rgba(3,4,9,0.90) 100%) !important;
+  backdrop-filter: saturate(125%) !important;
+  -webkit-backdrop-filter: saturate(125%) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.4);
 }
 
@@ -3638,22 +3651,30 @@ function GlobalVideoBackdrop() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !blobUrl) return;
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.loop = isMobile;
+    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.loop = false;
     const onMeta = () => {
-      if (isMobile) {
-        // Mobile browsers don't reliably paint scrubbed (seeked) frames on a
-        // paused video, so the car would stay invisible. Play it as a gentle
-        // muted loop instead — the cinematic backdrop is visible either way.
-        v.play().catch(() => {});
-      } else {
-        v.pause();
-        v.currentTime = 0;
-      }
+      v.pause();
+      v.currentTime = 0;
       setReady(true);
     };
     v.addEventListener('loadedmetadata', onMeta, { once: true });
     if (v.readyState >= 1) onMeta();
+
+    // iOS unlock: mobile Safari won't paint seeked (scrubbed) frames on a
+    // video that has never been played. A single muted play()/pause() on the
+    // first user interaction unlocks scrub rendering, so the scroll-driven
+    // car works on phones too — without any permanent loop playback.
+    const unlock = () => {
+      const p = v.play();
+      if (p && p.then) p.then(() => v.pause()).catch(() => {});
+      else { try { v.pause(); } catch (e) {} }
+    };
+    window.addEventListener('touchstart', unlock, { once: true, passive: true });
+    window.addEventListener('click', unlock, { once: true });
+    return () => {
+      window.removeEventListener('touchstart', unlock);
+      window.removeEventListener('click', unlock);
+    };
   }, [blobUrl]);
 
   // ── 3. Scroll + RAF (all via refs — zero React re-renders) ────────────────
@@ -3661,10 +3682,6 @@ function GlobalVideoBackdrop() {
     if (!ready) return;
     const v = videoRef.current;
     if (!v) return;
-
-    // On mobile the video plays as a loop (see attach effect) — skip the
-    // scroll-scrub machinery entirely so we don't fight playback.
-    if (window.matchMedia('(max-width: 767px)').matches) return;
 
     // Scroll handler — only writes to refs, touches no React state
     const onScroll = () => {
@@ -5180,16 +5197,16 @@ function Region() {
           </p>
         </Reveal>
 
-        <Reveal delay={220}>
-          <div className="mt-10 flex flex-wrap gap-2">
-            {tags.map((t) =>
-            <span key={t} className="region-tag">
+        <div className="mt-8 flex flex-wrap gap-2">
+          {tags.map((t, i) =>
+            <Reveal key={t} delay={i * 55}>
+              <span className="region-tag">
                 <span className="dot" />
                 {t}
               </span>
-            )}
-          </div>
-        </Reveal>
+            </Reveal>
+          )}
+        </div>
 
         <Reveal delay={260}>
           <div className="mt-8 text-[11px] font-mono uppercase tracking-[0.2em] text-white/35">
@@ -5694,10 +5711,10 @@ function App() {
       {/* <BeforeAfter /> — Vorher/Nachher: aktivieren sobald Fotos fertig */}
       <Packages />
       <Configurator />
+      <SummerPass />
       <Trust />
       <Why />
       <Region />
-      <SummerPass />
       <FAQ />
       <CTA />
       <Footer />
