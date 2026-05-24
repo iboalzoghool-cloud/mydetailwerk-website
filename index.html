@@ -2342,57 +2342,69 @@ section.z-10:not([data-screen-label="01 Hero"]) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   PREMIUM DEPTH v1 — per-section colour ambience
-   Each section carries its own subtle colour mood so scrolling
-   feels like distinct scenes instead of one flat slab. Glows are
-   large + low-opacity so text contrast stays intact. (edel)
+   PREMIUM DEPTH v2 — per-section colour ambience + FROSTED GLASS
+   Each section carries its own subtle colour mood AND lets the
+   cinematic scroll-video shimmer through as a soft blurred ambient,
+   so the effect is finally visible while text stays readable. (edel)
    ═══════════════════════════════════════════════════════════ */
 #top #materials {
   background:
-    radial-gradient(95% 72% at 12% 0%, rgba(201,169,106,0.13), transparent 55%),
-    radial-gradient(80% 60% at 92% 100%, rgba(96,140,210,0.10), transparent 60%),
-    linear-gradient(180deg, rgba(8,8,12,0.93) 0%, rgba(5,5,9,0.96) 45%, rgba(8,8,12,0.94) 100%) !important;
+    radial-gradient(95% 72% at 12% 0%, rgba(201,169,106,0.15), transparent 55%),
+    radial-gradient(80% 60% at 92% 100%, rgba(96,140,210,0.12), transparent 60%),
+    linear-gradient(180deg, rgba(8,8,12,0.58) 0%, rgba(5,5,9,0.70) 45%, rgba(8,8,12,0.60) 100%) !important;
 }
 #top #summer {
   background:
-    radial-gradient(92% 70% at 85% 6%, rgba(232,170,82,0.16), transparent 56%),
-    radial-gradient(80% 60% at 8% 100%, rgba(196,96,42,0.11), transparent 60%),
-    linear-gradient(180deg, rgba(12,9,7,0.93) 0%, rgba(7,5,4,0.96) 45%, rgba(11,8,6,0.94) 100%) !important;
+    radial-gradient(92% 70% at 85% 6%, rgba(232,170,82,0.18), transparent 56%),
+    radial-gradient(80% 60% at 8% 100%, rgba(196,96,42,0.13), transparent 60%),
+    linear-gradient(180deg, rgba(12,9,7,0.56) 0%, rgba(7,5,4,0.70) 45%, rgba(11,8,6,0.58) 100%) !important;
 }
 #top #packages {
   background:
-    radial-gradient(96% 72% at 50% -6%, rgba(58,110,232,0.16), transparent 55%),
-    radial-gradient(70% 55% at 100% 100%, rgba(201,169,106,0.08), transparent 60%),
-    linear-gradient(180deg, rgba(7,9,15,0.93) 0%, rgba(4,5,11,0.96) 45%, rgba(7,9,15,0.94) 100%) !important;
+    radial-gradient(96% 72% at 50% -6%, rgba(58,110,232,0.18), transparent 55%),
+    radial-gradient(70% 55% at 100% 100%, rgba(201,169,106,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,15,0.56) 0%, rgba(4,5,11,0.70) 45%, rgba(7,9,15,0.58) 100%) !important;
 }
 #top #configurator {
   background:
-    radial-gradient(90% 66% at 7% 4%, rgba(74,150,210,0.13), transparent 55%),
-    radial-gradient(80% 60% at 96% 96%, rgba(120,104,224,0.11), transparent 60%),
-    linear-gradient(180deg, rgba(7,9,14,0.93) 0%, rgba(4,5,10,0.96) 45%, rgba(7,9,14,0.94) 100%) !important;
+    radial-gradient(90% 66% at 7% 4%, rgba(74,150,210,0.15), transparent 55%),
+    radial-gradient(80% 60% at 96% 96%, rgba(120,104,224,0.13), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,14,0.56) 0%, rgba(4,5,10,0.70) 45%, rgba(7,9,14,0.58) 100%) !important;
 }
 #top #region {
   background:
-    radial-gradient(100% 72% at 50% 0%, rgba(48,92,206,0.15), transparent 58%),
-    linear-gradient(180deg, rgba(6,8,15,0.93) 0%, rgba(4,5,11,0.96) 45%, rgba(6,8,15,0.94) 100%) !important;
+    radial-gradient(100% 72% at 50% 0%, rgba(48,92,206,0.17), transparent 58%),
+    linear-gradient(180deg, rgba(6,8,15,0.54) 0%, rgba(4,5,11,0.68) 45%, rgba(6,8,15,0.56) 100%) !important;
 }
 #top #faq {
   background:
-    radial-gradient(85% 60% at 90% 4%, rgba(110,124,205,0.12), transparent 56%),
-    radial-gradient(70% 55% at 4% 100%, rgba(96,140,210,0.08), transparent 60%),
-    linear-gradient(180deg, rgba(7,8,13,0.93) 0%, rgba(4,5,9,0.96) 45%, rgba(7,8,13,0.94) 100%) !important;
+    radial-gradient(85% 60% at 90% 4%, rgba(110,124,205,0.14), transparent 56%),
+    radial-gradient(70% 55% at 4% 100%, rgba(96,140,210,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(7,8,13,0.56) 0%, rgba(4,5,9,0.70) 45%, rgba(7,8,13,0.58) 100%) !important;
 }
 /* Trust band (no id) — quiet champagne warmth */
 #top section.z-10:not([data-screen-label="01 Hero"]) {
   background:
-    radial-gradient(80% 65% at 88% 0%, rgba(201,169,106,0.09), transparent 58%),
-    linear-gradient(180deg, rgba(8,8,12,0.94), rgba(5,6,10,0.96)) !important;
+    radial-gradient(80% 65% at 88% 0%, rgba(201,169,106,0.11), transparent 58%),
+    linear-gradient(180deg, rgba(8,8,12,0.56), rgba(5,6,10,0.70)) !important;
 }
 /* CTA keeps skyline drama — enrich with a deeper electric-blue bloom */
 #top #cta {
   background:
-    radial-gradient(70% 60% at 50% 12%, rgba(58,110,232,0.18), transparent 60%),
-    linear-gradient(180deg, rgba(6,7,12,0.62) 0%, rgba(5,6,11,0.80) 55%, rgba(6,7,14,0.90) 100%) !important;
+    radial-gradient(70% 60% at 50% 12%, rgba(58,110,232,0.20), transparent 60%),
+    linear-gradient(180deg, rgba(6,7,12,0.50) 0%, rgba(5,6,11,0.66) 55%, rgba(6,7,14,0.78) 100%) !important;
+}
+/* Frosted glass: the scroll-video stays visible as a soft, blurred,
+   saturated wash behind every panel — readable but alive. */
+#top #materials, #top #summer, #top #packages, #top #configurator,
+#top #region, #top #faq, #top #cta, #top #why,
+#top section.z-10:not([data-screen-label="01 Hero"]) {
+  backdrop-filter: blur(26px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(135%) !important;
+}
+/* #why keeps a calm, near-neutral frosted tone as a visual rest */
+#top #why {
+  background: linear-gradient(180deg, rgba(7,8,12,0.52), rgba(5,6,10,0.66)) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2437,6 +2449,95 @@ section.z-10:not([data-screen-label="01 Hero"]) {
 .hud-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(73,139,217,0.30);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   "WIR KOMMEN ZU IHNEN" — mobile-service scene + driving car
+   ═══════════════════════════════════════════════════════════ */
+#top #mobil {
+  background:
+    radial-gradient(90% 70% at 50% -8%, rgba(58,110,232,0.20), transparent 56%),
+    radial-gradient(70% 60% at 8% 100%, rgba(201,169,106,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(6,8,14,0.54) 0%, rgba(4,5,11,0.68) 45%, rgba(6,8,14,0.56) 100%) !important;
+  backdrop-filter: blur(26px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(135%) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.4);
+}
+
+/* The driving car + its glowing tail (Schweif) */
+.wkzi-track {
+  position: relative;
+  height: 96px;
+  margin: 30px 0 18px;
+  pointer-events: none;
+}
+.wkzi-runner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  transform: translate(-45vw, -50%);
+  animation: wkzi-drive 8.5s cubic-bezier(.5,0,.5,1) infinite;
+  will-change: transform;
+}
+@keyframes wkzi-drive {
+  0%   { transform: translate(-45vw, -50%); }
+  10%  { transform: translate(-45vw, -50%); }
+  58%  { transform: translate(42vw, -50%); }
+  64%  { transform: translate(42vw, -50%); }
+  100% { transform: translate(118vw, -50%); }
+}
+.wkzi-trail {
+  width: 40vw;
+  height: 7px;
+  margin-right: -8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent 0%, rgba(90,136,240,0.28) 55%, rgba(150,190,255,0.85) 100%);
+  filter: blur(0.5px);
+  box-shadow: 0 0 22px rgba(90,136,240,0.55), 0 0 6px rgba(150,190,255,0.7);
+}
+.wkzi-car svg { display: block; filter: drop-shadow(0 10px 16px rgba(0,0,0,0.6)); }
+.wkzi-msg {
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(150,190,255,0.55);
+  white-space: nowrap;
+}
+/* Mobile-service benefit cards */
+.wkzi-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 22px 20px;
+  background: linear-gradient(160deg, rgba(20,24,34,0.55), rgba(8,10,16,0.62));
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 26px 56px -30px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.5s ease, border-color 0.5s ease;
+  height: 100%;
+}
+.wkzi-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(90,136,240,0.30);
+  box-shadow: 0 36px 70px -28px rgba(0,0,0,0.9), 0 0 0 1px rgba(90,136,240,0.22);
+}
+.wkzi-ico {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 30% 25%, rgba(90,136,240,0.30), rgba(58,110,232,0.10));
+  border: 1px solid rgba(90,136,240,0.30);
+  color: #bcd2ff;
+  margin-bottom: 14px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wkzi-runner { animation: none; transform: translate(34vw, -50%); }
+}
+@media (max-width: 640px) {
+  .wkzi-track { height: 74px; margin: 18px 0 10px; }
+  .wkzi-car svg { width: 96px; height: auto; }
+  .wkzi-trail { width: 55vw; }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -4648,7 +4749,7 @@ function Packages() {
     {
       tier: 'I',
       name: 'Main Fresh',
-      tagline: 'Schneller Refresh. Innenraum sauber, fertig.',
+      tagline: 'Für ein Auto in normalem Zustand: keine starken Flecken, keine Tierhaare. Schnelle Auffrischung innen.',
       price: 49,
       items: [
         'Innenraum gründlich aussaugen',
@@ -4661,7 +4762,7 @@ function Packages() {
     {
       tier: 'II',
       name: 'Main Deep',
-      tagline: 'Das Paket, das die meisten wählen. Weil ein kurzer Refresh nicht reicht, wenn man wirklich sauber fahren will.',
+      tagline: 'Für sichtbare Gebrauchsspuren: Krümel, Staub in jeder Ritze, leichte Flecken. Die Wahl der meisten.',
       price: 79,
       items: [
         'Alles aus Main Fresh',
@@ -4676,7 +4777,7 @@ function Packages() {
     {
       tier: 'III',
       name: 'Main Prestige',
-      tagline: 'Für Fahrzeuge, bei denen jedes Detail sitzen soll.',
+      tagline: 'Für stark genutzte Autos oder vor dem Verkauf: Tierhaare, hartnäckige Flecken, intensive Gerüche. Alles raus.',
       price: 129,
       items: [
         'Alles aus Main Deep',
@@ -4695,7 +4796,7 @@ function Packages() {
       id="packages"
       eyebrow="06 · Pakete"
       title={<>Drei Pakete. Ein <span className="text-finish" data-text="Anspruch">Anspruch</span>.</>}
-      sub="Vom schnellen Refresh bis zum vollen Finish. Die genannten Preise sind Startpreise, den Endpreis nennen wir nach einer kurzen Einschätzung."
+      sub="Vom schnellen Refresh bis zum vollen Finish. Die Preise sind Startpreise: Was es am Ende wird, hängt von Größe, Verschmutzung, Flecken und Tierhaaren ab. Schick uns ein paar Bilder, dann bekommst du eine klare Spanne, keine bösen Überraschungen."
     >
       <div className="max-w-7xl mx-auto grid grid-cols-3 gap-2 md:gap-4 lg:gap-4 items-stretch" id="pkg-grid">
         {pkgs.map((p, i) => (
@@ -5348,7 +5449,120 @@ window.Footer = Footer;
 </script>
 
 <script type="text/babel">
-/* global React, ReactDOM, useState, useEffect, useTweaks, TweaksPanel, TweakSection, TweakColor, TweakRadio, TweakToggle, TweakSelect, TweakSlider, Hero, Trust, Materials, BeforeAfter, SummerPass, Packages, Configurator, Process, Why, Region, FAQ, CTA, Footer, GlobalVideoBackdrop */
+/* global React, Reveal, waLink */
+
+// ── "Wir kommen zu Ihnen" — mobile service scene with driving car ──────────
+function CarSvg() {
+  return (
+    <svg width="124" height="56" viewBox="0 0 124 56" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="wkziBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e6ebf5" />
+          <stop offset="0.5" stopColor="#aeb9cc" />
+          <stop offset="1" stopColor="#6f7d96" />
+        </linearGradient>
+      </defs>
+      {/* body */}
+      <path d="M6 40 Q7 27 22 25 L40 14 Q46 10 56 10 L78 10 Q92 11 101 23 L113 27 Q119 29 119 35 L119 41 Q119 43 116 43 L9 43 Q6 43 6 40 Z"
+            fill="url(#wkziBody)" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" />
+      {/* windows */}
+      <path d="M44 16 L56 13 L74 13 L82 16 L88 23 L41 23 Z" fill="rgba(130,175,255,0.55)" stroke="rgba(190,215,255,0.5)" strokeWidth="0.6" />
+      <line x1="64" y1="13" x2="64" y2="23" stroke="rgba(40,55,80,0.5)" strokeWidth="1.2" />
+      {/* headlight */}
+      <circle cx="116" cy="34" r="3" fill="#cdeaff" />
+      <circle cx="116" cy="34" r="6" fill="rgba(180,225,255,0.35)" />
+      {/* wheels */}
+      <circle cx="35" cy="43" r="10" fill="#0c0d12" stroke="#5a88f0" strokeWidth="2.4" />
+      <circle cx="93" cy="43" r="10" fill="#0c0d12" stroke="#5a88f0" strokeWidth="2.4" />
+      <circle cx="35" cy="43" r="3.2" fill="#9bb8ff" />
+      <circle cx="93" cy="43" r="3.2" fill="#9bb8ff" />
+    </svg>
+  );
+}
+
+function MobileService() {
+  const benefits = [
+    {
+      title: 'Vor deiner Tür',
+      text: 'Zuhause oder am Arbeitsplatz. Du musst nirgendwo hinfahren und nicht warten.',
+      icon: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>),
+    },
+    {
+      title: 'Spart Zeit & Geld',
+      text: 'Keine Anfahrt, keine Wartezeit, kein Waschstraßen-Abo. Du machst weiter, wir machen sauber.',
+      icon: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>),
+    },
+    {
+      title: 'Mehr beim Wiederverkauf',
+      text: 'Ein gepflegter Innenraum macht beim Verkauf einen spürbaren Unterschied im Preis.',
+      icon: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>),
+    },
+    {
+      title: 'Schäden & Gerüche vermeiden',
+      text: 'Einmal richtig sauber, statt langsam runterkommen. Essens- und andere Gerüche raus.',
+      icon: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>),
+    },
+  ];
+
+  return (
+    <section id="mobil" className="relative py-20 md:py-28 overflow-hidden" style={{ color: '#ede8e0', fontFamily: 'Inter' }}>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <Reveal><div className="eyebrow mb-5" style={{ display: 'inline-block' }}>Mobiler Service</div></Reveal>
+        <Reveal delay={80}>
+          <h2 className="display text-4xl md:text-6xl lg:text-7xl">
+            Wir kommen <span className="text-finish" data-text="zu dir">zu dir</span>.
+          </h2>
+        </Reveal>
+        <Reveal delay={140}>
+          <p className="mt-6 text-white/65 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            Kein Termin in der Waschstraße, keine Anfahrt für dich. Wir kommen mit allem, was wir brauchen, direkt zu dir und reinigen dein Auto vor Ort.
+          </p>
+        </Reveal>
+      </div>
+
+      {/* Driving car with glowing tail */}
+      <div className="wkzi-track">
+        <div className="wkzi-msg">Anfahrt · zu dir</div>
+        <div className="wkzi-runner">
+          <div className="wkzi-trail" />
+          <div className="wkzi-car"><CarSvg /></div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {benefits.map((b, i) => (
+            <Reveal key={b.title} delay={i * 90}>
+              <div className="wkzi-card">
+                <div className="wkzi-ico">{b.icon}</div>
+                <h3 className="font-serif text-xl" style={{ color: '#eef1f7' }}>{b.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>{b.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={120}>
+          <div className="mt-12 text-center">
+            <a href={waLink('Hallo MAIN DetailWerk, ich möchte den mobilen Vor-Ort-Service. Mein Standort ist: ')}
+               target="_blank" rel="noopener"
+               className="btn-champagne inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+              Vor-Ort-Termin per WhatsApp
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+window.MobileService = MobileService;
+
+</script>
+
+<script type="text/babel">
+/* global React, ReactDOM, useState, useEffect, useTweaks, TweaksPanel, TweakSection, TweakColor, TweakRadio, TweakToggle, TweakSelect, TweakSlider, Hero, Trust, Materials, BeforeAfter, SummerPass, Packages, Configurator, Process, Why, Region, FAQ, CTA, Footer, MobileService, GlobalVideoBackdrop */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#3a6ee8",
@@ -5423,6 +5637,7 @@ function App() {
       <GlobalVideoBackdrop />
       <div className="relative z-10">
       <Hero headline={headline} sub={sub} />
+      <MobileService />
       <Materials />
       {/* <BeforeAfter /> — Vorher/Nachher: aktivieren sobald Fotos fertig */}
       <SummerPass />
