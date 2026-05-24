@@ -2258,10 +2258,17 @@ section[data-screen-label="01 Hero"] {
     display: inline-flex !important;
   }
 
-  /* 20. Materials grid – 3 per row × 2 rows on mobile (compact) */
+  /* 20. Materials – 3 per row, and the 5th/last row sits CENTERED
+     (flex-wrap + justify-center) so the two bottom tiles look intentional. */
   #materials .grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 7px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  #materials .grid > * {
+    flex: 0 0 calc(33.333% - 6px) !important;
+    max-width: calc(33.333% - 6px) !important;
   }
   #materials .rounded-3xl {
     border-radius: 12px !important;
@@ -2279,16 +2286,20 @@ section[data-screen-label="01 Hero"] {
   section .display { font-size: clamp(30px, 8.5vw, 40px) !important; line-height: 1.08 !important; }
   section .display + p, .max-w-2xl.text-base { font-size: 14.5px !important; }
 
-  /* C3. Material cards – compact 3-up tiles, label only, no overlap */
-  #materials article { height: 150px !important; }
-  #materials article > div:last-of-type,
-  #materials article [style*="padding: 22px"] { padding: 12px 11px !important; }
-  #materials article [style*="Cinzel"] { font-size: 14px !important; letter-spacing: 0 !important; line-height: 1.1 !important; }
-  /* hide the tiny mono index + care-note row so nothing collides on small tiles */
+  /* C3. Material cards – compact 3-up tiles, clean single label, no overlap */
+  #materials article { height: 158px !important; }
+  #materials article [style*="padding: 22px"] { padding: 0 10px 12px !important; justify-content: flex-end !important; }
+  #materials article [style*="Cinzel"] {
+    font-size: 13px !important; letter-spacing: 0 !important; line-height: 1.05 !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.9) !important;
+  }
+  /* hide tiny mono index, care-note row and the hover description so nothing
+     collides with the label on small tiles */
   #materials article [style*="0.3em"],
-  #materials article [style*="0.15em"] { display: none !important; }
+  #materials article [style*="0.15em"],
+  #materials article [style*="max-height"] { display: none !important; }
   /* the rich "Signature" tile doesn't fit a 1/3 tile — hide on mobile so the
-     5 material tiles sit cleanly as 3 + 2 (two rows) */
+     5 material tiles sit cleanly as 3 + 2 (second row centered) */
   #materials .grid > *:last-child { display: none !important; }
 
   /* C4. "Warum" list – compact rows, no wasted space */
@@ -3711,10 +3722,10 @@ function GlobalVideoBackdrop() {
       const elapsed = now - lastSeekRef.current;
 
       if (elapsed >= 16) { // ~60fps
-        if (Math.abs(diff) > 0.5) {
+        if (Math.abs(diff) > 0.35) {
           v.currentTime = target;            // big jump → direct
         } else if (Math.abs(diff) > 0.01) {
-          v.currentTime = cur + diff * 0.80; // small diff → lerp
+          v.currentTime = cur + diff * 0.92; // small diff → snappier lerp
         }
         lastSeekRef.current = now;
       }
