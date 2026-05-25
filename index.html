@@ -887,6 +887,13 @@
 .pt-20 { padding-top:5rem }
 .pb-10 { padding-bottom:2.5rem }
 .gap-12 { gap:3rem }
+.gap-1\.5 { gap:.375rem }
+.gap-5 { gap:1.25rem }
+.gap-9 { gap:2.25rem }
+.gap-16 { gap:4rem }
+.gap-x-14 { column-gap:3.5rem }
+.gap-y-0 { row-gap:0 }
+.gap-y-10 { row-gap:2.5rem }
 .py-3 { padding-block:.75rem }
 .mt-7 { margin-top:1.75rem }
 .mb-4 { margin-bottom:1rem }
@@ -910,7 +917,9 @@
   .md\:py-28 { padding-block:7rem }
   .md\:px-12 { padding-inline:3rem }
   .md\:gap-5 { gap:1.25rem }
+  .md\:gap-16 { gap:4rem }
   .md\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .md\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)) }
   .md\:py-32 { padding-block:8rem }
   .md\:p-14 { padding:3.5rem }
   .md\:text-5xl { font-size:3rem }
@@ -2737,13 +2746,13 @@ section.surface-alt { background: var(--paper-2) !important; }
 .btn-champagne::before, .btn-champagne::after { display: none !important; }
 .btn-champagne:hover { background: #2a2620 !important; transform: translateY(-1px) !important; }
 .btn-ghost {
-  background: transparent !important;
+  background: #ffffff !important;
   color: var(--ink) !important;
-  border: 1px solid var(--line) !important;
-  box-shadow: none !important;
+  border: 1.5px solid rgba(22,20,15,0.30) !important;
+  box-shadow: 0 1px 2px rgba(22,20,15,0.05) !important;
   transition: border-color .2s ease, background .2s ease !important;
 }
-.btn-ghost:hover { border-color: var(--ink) !important; background: rgba(22,20,15,0.03) !important; }
+.btn-ghost:hover { border-color: var(--ink) !important; background: #f7f5f0 !important; }
 
 /* ---- Haarlinien hell ---- */
 .hairline-h, .hairline { background: var(--line) !important; border-color: var(--line) !important; }
@@ -2800,6 +2809,22 @@ img { max-width: 100% !important; }
 .legal-trigger { color: var(--ink) !important; }
 .legal-trigger span { color: var(--ink) !important; }
 .region-tag { color: var(--ink-2) !important; background: transparent !important; border: 1px solid var(--line) !important; }
+
+/* ---- Sticky WhatsApp-FAB (nur mobil) ---- */
+.wa-fab {
+  position: fixed; right: 16px; bottom: 16px; z-index: 9998;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--wa) !important; color: #fff !important;
+  display: none; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px -6px rgba(31,143,78,0.55), 0 2px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+}
+@media (max-width: 767px) { .wa-fab { display: flex; } }
+
+/* ---- Links in Nav/Buttons ohne Unterstreichung (Footer-Links behalten sie) ---- */
+section[data-screen-label="01 Hero"] nav a,
+.btn-champagne, .btn-ghost, .wa-fab,
+a[href^="https://wa.me"] { text-decoration: none !important; }
 
 /* ---- generische helle Flächen für Glas-artige Panels in Sektionen ---- */
 .frost, .panel, .card-surface {
@@ -4087,7 +4112,7 @@ function Hero({ headline, sub }) {
           <a href="#why" style={{ color: 'inherit' }}>Warum wir</a>
           <a href="#results" style={{ color: 'inherit' }}>Ergebnisse</a>
           <a href="#packages" style={{ color: 'inherit' }}>Pakete</a>
-          <a href="#region" style={{ color: 'inherit' }}>Region</a>
+          <a href="#region" style={{ color: 'inherit' }}>Servicegebiet</a>
         </nav>
         <a href={waLink(WA_DEFAULT_MSG)}
            target="_blank" rel="noopener"
@@ -4250,15 +4275,15 @@ function MaterialCard({ mat, index }) {
         backgroundSize: 'cover', backgroundPosition: 'center',
         transform: hovered ? 'scale(1.08)' : 'scale(1.02)',
         transition: 'transform 1.8s cubic-bezier(.22,1,.36,1)',
-        filter: 'brightness(0.58) saturate(0.72)',
+        filter: 'brightness(0.88) saturate(1.0)',
       }} />
 
-      {/* Gradient overlay */}
+      {/* Gradient overlay – nur unten abdunkeln, damit das Material sichtbar bleibt */}
       <div style={{
         position: 'absolute', inset: 0,
         background: hovered
-          ? 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.28) 52%, rgba(0,0,0,0.0) 100%)'
-          : 'linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.62) 52%, rgba(0,0,0,0.22) 100%)',
+          ? 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.0) 100%)'
+          : 'linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0.0) 100%)',
         transition: 'background 0.7s ease',
       }} />
 
@@ -4791,7 +4816,14 @@ function PackageCard({ pkg, featured }) {
         <span style={{ fontSize: 26, fontWeight: 600, color: 'var(--ink)' }}>€</span>
       </div>
 
-      <div style={{ height: 1, background: 'var(--line)', margin: '22px 0' }} />
+      {pkg.duration && (
+        <div className="flex items-center gap-2" style={{ marginTop: 12, fontSize: 13, color: 'var(--ink-3)' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/></svg>
+          Dauer {pkg.duration}
+        </div>
+      )}
+
+      <div style={{ height: 1, background: 'var(--line)', margin: '20px 0' }} />
 
       <ul className="space-y-3">
         {pkg.items.map((it, i) => (
@@ -4822,6 +4854,7 @@ function Packages() {
       name: 'Main Fresh',
       tagline: 'Für ein Auto in normalem Zustand: keine starken Flecken, keine Tierhaare. Schnelle Auffrischung innen.',
       price: 49,
+      duration: 'ca. 1–1,5 Std.',
       items: [
         'Innenraum gründlich aussaugen',
         'Cockpit & Mittelkonsole reinigen',
@@ -4835,6 +4868,7 @@ function Packages() {
       name: 'Main Deep',
       tagline: 'Für sichtbare Gebrauchsspuren: Krümel, Staub in jeder Ritze, leichte Flecken. Die Wahl der meisten.',
       price: 79,
+      duration: 'ca. 2–3 Std.',
       items: [
         'Alles aus Main Fresh',
         'Fußmatten & Teppiche intensiv gereinigt',
@@ -4850,6 +4884,7 @@ function Packages() {
       name: 'Main Prestige',
       tagline: 'Für stark genutzte Autos oder vor dem Verkauf: Tierhaare, hartnäckige Flecken, intensive Gerüche. Alles raus.',
       price: 129,
+      duration: 'ca. 3–4 Std.',
       items: [
         'Alles aus Main Deep',
         'Kofferraumreinigung komplett',
@@ -5123,13 +5158,20 @@ window.Process = Process;
 /* global React, Section, Reveal */
 
 function Why() {
+  const I = (p) => (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{p}</svg>);
   const points = [
-    { t: 'Kein Waschanlagen-System', d: 'Kein Durchlauf, keine Bürsten. Handarbeit, abgestimmt auf deinen Innenraum.' },
-    { t: 'Materialgerechte Reinigung', d: 'Leder, Glas, Klavierlack und Stoff bekommen jeweils das richtige Mittel und die richtige Technik.' },
-    { t: 'Mobile Termine vor Ort', d: 'Wir kommen zu dir – zuhause oder am Arbeitsplatz, in Frankfurt und Umgebung.' },
-    { t: 'Transparent ab 49 €', d: 'Klarer Einstiegspreis. Endpreis nach kurzer Einschätzung – ohne Überraschungen.' },
-    { t: 'Fokus auf den Innenraum', d: 'Wir machen eine Sache richtig, statt alles halb. Cockpit, Sitze, Polster, Glas, Fugen.' },
-    { t: 'Buchung per WhatsApp', d: 'Modell, Standort, ein paar Bilder. Termin steht – ohne Formular-Chaos.' },
+    { t: 'Kein Waschanlagen-System', d: 'Kein Durchlauf, keine Bürsten. Handarbeit, abgestimmt auf deinen Innenraum.',
+      icon: I(<><path d="M5 5l14 14"/><path d="M3 12c0-1.5.5-3 2-3.5"/><path d="M21 12c0 4.5-4 8-9 8-1.6 0-3-.4-4.3-1"/><path d="M7.5 4.8C9 4 10.4 4 12 4c5 0 9 3.5 9 8"/></>) },
+    { t: 'Materialgerechte Reinigung', d: 'Leder, Glas, Klavierlack und Stoff bekommen jeweils das richtige Mittel und die richtige Technik.',
+      icon: I(<><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/><path d="M4 12l8 4.5 8-4.5"/><path d="M4 16.5l8 4.5 8-4.5"/></>) },
+    { t: 'Mobile Termine vor Ort', d: 'Wir kommen zu dir – zuhause oder am Arbeitsplatz, in Frankfurt und Umgebung.',
+      icon: I(<><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></>) },
+    { t: 'Transparent ab 49 €', d: 'Klarer Einstiegspreis. Endpreis nach kurzer Einschätzung – ohne Überraschungen.',
+      icon: I(<><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.7-1-1.8-1.5-3-1.5-2 0-3 1-3 2.2 0 2.8 6 1.4 6 4.2 0 1.3-1.2 2.1-3 2.1-1.3 0-2.4-.5-3-1.5"/><path d="M12 6.5v11"/></>) },
+    { t: 'Fokus auf den Innenraum', d: 'Wir machen eine Sache richtig, statt alles halb. Cockpit, Sitze, Polster, Glas, Fugen.',
+      icon: I(<><path d="M4 13l1.5-4.5A2 2 0 0 1 7.4 7h9.2a2 2 0 0 1 1.9 1.5L20 13"/><path d="M4 13h16v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4z"/><path d="M7 15.5h.01M17 15.5h.01"/></>) },
+    { t: 'Buchung per WhatsApp', d: 'Modell, Standort, ein paar Bilder. Termin steht – ohne Formular-Chaos.',
+      icon: I(<><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></>) },
   ];
 
   return (
@@ -5143,8 +5185,8 @@ function Why() {
         {points.map((p, i) => (
           <Reveal key={i} delay={i * 60}>
             <div className="flex items-start gap-5 py-6" style={{ borderTop: '1px solid var(--line)' }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.2em', color: 'var(--ink-3)', marginTop: 4, flexShrink: 0, width: 24 }}>
-                0{i + 1}
+              <div style={{ color: 'var(--ink)', marginTop: 2, flexShrink: 0 }}>
+                {p.icon}
               </div>
               <div>
                 <h3 style={{ fontSize: 18, fontWeight: 600, color: 'var(--ink)', lineHeight: 1.3 }}>{p.t}</h3>
@@ -5461,7 +5503,7 @@ function Footer() {
               <li><a href="#results" style={{ color: 'inherit' }}>Ergebnisse</a></li>
               <li><a href="#materials" style={{ color: 'inherit' }}>Materialien</a></li>
               <li><a href="#packages" style={{ color: 'inherit' }}>Pakete</a></li>
-              <li><a href="#region" style={{ color: 'inherit' }}>Region</a></li>
+              <li><a href="#region" style={{ color: 'inherit' }}>Servicegebiet</a></li>
               <li><a href="#faq" style={{ color: 'inherit' }}>FAQ</a></li>
             </ul>
           </div>
@@ -5685,6 +5727,11 @@ function App() {
       <CTA />
       <Footer />
       </div>
+
+      {/* Sticky WhatsApp – mobil immer erreichbar */}
+      <a className="wa-fab" href={waLink(WA_DEFAULT_MSG)} target="_blank" rel="noopener" aria-label="Termin per WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
 
       <TweaksPanel>
         <TweakSection label="Logo" />
